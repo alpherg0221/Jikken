@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     }
 
     // diff1の単語を読み込んでdiff1stに格納
-    // 置き換え前にピリオドやコンマを消す
+    // 格納前にピリオドやコンマを消す
     while (!fin1.eof()) {
         fin1 >> word;
         word = regex_replace(word, re, "");
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
     // diff2の単語を読み込んでdiff2stに格納
     // diff1とdiff2で共通する単語をcmnstに格納
-    // 置き換え前にピリオドやコンマを消す
+    // 格納前にピリオドやコンマを消す
     while (!fin2.eof()) {
         fin2 >> word;
         word = regex_replace(word, re, "");
