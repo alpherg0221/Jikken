@@ -35,8 +35,8 @@ int main() {
     }
 
     //合計金額の出力
-    fout << "合計金額 " << sum;
-    cout << "合計金額 " << sum;
+    fout << "合計金額 " << sum << "\n";
+    cout << "合計金額 " << sum << "\n";
 
     return 0;
 }
