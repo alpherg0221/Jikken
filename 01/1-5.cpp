@@ -46,5 +46,5 @@ int main(int argc, char *argv[]) {
     }
 
     // 結果の出力
-    cout << registered_min;
+    cout << registered_min << endl;
 }
