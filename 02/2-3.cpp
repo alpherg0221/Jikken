@@ -85,7 +85,7 @@ void histogram(vector<long> list) {
 
     // 結果の出力
     for (int i = 0; i < 10; i++) {
-        printf("%6ld -%6ld\t", hlist[i][0], hlist[i][1]);
+        printf("%6ld -%6ld\t%7ld\t", hlist[i][0], hlist[i][1], hlist[i][2]);
         for (int j = 0; j < hlist[i][2] / static_cast<long>(pow(10, min_digit)); j++) cout << "*";
         cout << endl;
     }
@@ -123,7 +123,7 @@ void histogram(vector<double> list) {
 
     // 結果の出力
     for (int i = 0; i < 10; i++) {
-        printf("%6.1lf -%6.1lf\t", hlist[i][0], hlist[i][1]);
+        printf("%6.1lf -%6.1lf\t%7d\t", hlist[i][0], hlist[i][1], static_cast<int>(hlist[i][2]));
         for (int j = 0; j < hlist[i][2] / pow(10, min_digit); j++) cout << "*";
         cout << endl;
     }

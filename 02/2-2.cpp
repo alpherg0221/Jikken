@@ -7,6 +7,7 @@ using namespace std;
 // 最も小さい数をチェック
 template<class T>
 void min(T x, T y, T z) {
+    // 3引数の比較
     T min = x;
     if (y < min) min = y;
     if (z < min) min = z;
