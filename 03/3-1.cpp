@@ -33,4 +33,5 @@ int main(int argc, char *argv[]) {
         if (cnt[i] != 0) printf("%4d円 : %d枚\n", money[i], cnt[i]);
     }
     cout << "おつりの最小枚数の合計は" << cnt[8] << "枚です" << endl;
+    cout << "おつりは" << paid - price << "円です" << endl;
 }

@@ -71,7 +71,7 @@ int **read_image(const string &fname, int *header) {
             int g = static_cast<int>(static_cast<unsigned char>(buf[1]));
             int b = static_cast<int>(static_cast<unsigned char>(buf[2]));
 
-            // NTSC係数による加重平均法を用いてグレースケールに変換する関数
+            // NTSC係数による加重平均法を用いてグレースケールに変換する
             pixel[i][j] = static_cast<int>(0.298912 * r + 0.586611 * g + 0.114478 * b);
         }
     }
