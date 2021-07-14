@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -6,58 +7,79 @@ class Matrix {
 private:
     int row;
     int column;
-    int data[];
+    vector<vector<int>> data;
 public:
-    Matrix(int r, int c, int d[]);
+    // コンストラクタ
+    Matrix(int r, int c, const vector<vector<int>> &d) {
+        row = r;
+        column = c;
+        data = d;
+    };
 
-    void add(Matrix m);
+    // 和を求めるメソッド
+    Matrix add(Matrix m) {
+        vector<vector<int>> temp(row, vector<int>(column));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                temp[i][j] = data[i][j] + m.data[i][j];
+            }
+        }
+        return Matrix(3, 3, temp);
+    };
 
-    void sub(Matrix m);
+    // 差を求めるメソッド
+    Matrix sub(Matrix m) {
+        vector<vector<int>> temp(row, vector<int>(column));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                temp[i][j] = data[i][j] - m.data[i][j];
+            }
+        }
+        return Matrix(3, 3, temp);
+    };
 
-    //Matrix dot(Matrix m);
+    // 内積を求めるメソッド
+    Matrix dot(Matrix m) {
+        vector<vector<int>> temp(row, vector<int>(m.column, 0));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                for (int k = 0; k < m.column; k++) {
+                    temp[i][k] += data[i][j] * m.data[j][k];
+                }
+            }
+        }
+        return Matrix(row, m.column, temp);
+    };
 
-    void show();
+    // 行列式を計算するメソッド
+    Matrix determinant() {
+
+    }
+
+    // 行列を表示するメソッド
+    void show() {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                cout << data[i][j] << " ";
+            }
+            cout << endl;
+        }
+    };
 };
 
-Matrix::Matrix(int r, int c, int d[]) {
-    row = r;
-    column = c;
-    *data = *d;
-}
-
-void Matrix::add(Matrix m) {
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < column; j++) {
-            data[column * i + j] += m.data[column * i + j];
-        }
-    }
-}
-
-void Matrix::sub(Matrix m) {
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < column; j++) {
-            data[column * i + j] -= m.data[column * i + j];
-        }
-    }
-}
-
-void Matrix::show() {
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < column; j++) {
-            cout << data[column * i + j] << " ";
-        }
-        cout << endl;
-    }
-}
-
 int main() {
-    int a[9] = {1, 5, 2, 8, 4, 6, 5, 2, 3};
-    int b[9] = {7, 1, 1, 5, 2, 5, 3, 1, 4};
-    //Matrix aMatrix(3, 3, a);
+    vector<vector<int>> a = {{1, 5, 2}, {8, 4, 6}, {5, 2, 3}};
+    Matrix aMatrix(3, 3, a);
+
+    vector<vector<int>> b = {{7, 1, 1}, {5, 2, 5}, {3, 1, 4}};
     Matrix bMatrix(3, 3, b);
 
-    //aMatrix.add(bMatrix);
-    bMatrix.show();
+    // 足し算
+    //aMatrix.add(bMatrix).show();
+    // 引き算
+    //aMatrix.sub(bMatrix).show();
+
+    aMatrix.dot(bMatrix).show();
 
     return 0;
 }
