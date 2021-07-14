@@ -52,8 +52,34 @@ public:
     };
 
     // 行列式を計算するメソッド
-    Matrix determinant() {
+    int det() {
+        // 正方行列かチェック
+        if (row != column) {
+            cout << "正方行列ではありません" << endl;
+            exit(1);
+        }
 
+        if (row == 2) {
+            return data[0][0] * data[1][1] - data[1][0] * data[0][1];
+        } else {
+            int ans = 0;
+            for (int i = 0; i < row; i++) {
+                vector<vector<int>> temp(row - 1, vector<int>(column - 1, 0));
+                for (int j = 0; j < row; j++) {
+                    for (int k = 1; k < column; k++) {
+                        if (j < i) {
+                            temp[j][k - 1] = data[j][k];
+                        } else if (j == i) {
+                            continue;
+                        } else if (j > i) {
+                            temp[j - 1][k - 1] = data[j][k];
+                        }
+                    }
+                }
+                ans += data[i][0] * (i % 2 == 0 ? 1 : -1) * Matrix(row - 1, column - 1, temp).det();
+            }
+            return ans;
+        }
     }
 
     // 行列を表示するメソッド
@@ -64,22 +90,42 @@ public:
             }
             cout << endl;
         }
+        cout << endl;
     };
 };
 
 int main() {
-    vector<vector<int>> a = {{1, 5, 2}, {8, 4, 6}, {5, 2, 3}};
-    Matrix aMatrix(3, 3, a);
+    vector<vector<int>> a1 = {{1, 5, 2},
+                              {8, 4, 6},
+                              {5, 2, 3}};
+    vector<vector<int>> b1 = {{7, 1, 1},
+                              {5, 2, 5},
+                              {3, 1, 4}};
+    vector<vector<int>> a2 = {{1, 5},
+                              {8, 4}};
+    vector<vector<int>> b2 = {{7, 1},
+                              {5, 2}};
+    vector<vector<int>> a3 = {{3, 4, -1},
+                              {2, 5, -2},
+                              {1, 6, -4}};
 
-    vector<vector<int>> b = {{7, 1, 1}, {5, 2, 5}, {3, 1, 4}};
-    Matrix bMatrix(3, 3, b);
+    Matrix aMatrix1(3, 3, a1);
+    Matrix bMatrix1(3, 3, b1);
+    Matrix aMatrix2(2, 2, a2);
+    Matrix bMatrix2(2, 2, b2);
+    Matrix aMatrix3(3, 3, a3);
 
     // 足し算
-    //aMatrix.add(bMatrix).show();
-    // 引き算
-    //aMatrix.sub(bMatrix).show();
+    aMatrix1.add(bMatrix1).show();
 
-    aMatrix.dot(bMatrix).show();
+    // 引き算
+    aMatrix1.sub(bMatrix1).show();
+
+    // 内積
+    aMatrix2.dot(bMatrix2).show();
+
+    // 行列式
+    cout << aMatrix3.det() << "\n\n";
 
     return 0;
 }
