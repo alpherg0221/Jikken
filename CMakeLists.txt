@@ -19,3 +19,8 @@ add_executable(3-1 03/3-1.cpp)
 add_executable(3-2 03/3-2.cpp)
 add_executable(3-3 03/3-3.cpp)
 add_executable(3-4 03/3-4.cpp)
+
+add_executable(4-1 04/4-1.cpp)
+add_executable(4-2 04/4-2.cpp)
+add_executable(4-3 04/4-3.cpp)
+add_executable(4-4 04/4-4.cpp)
