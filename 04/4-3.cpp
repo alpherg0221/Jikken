@@ -59,11 +59,13 @@ public:
             exit(1);
         }
 
+        // 2x2行列のときはたすき掛けの計算
         if (row == 2) {
             return data[0][0] * data[1][1] - data[1][0] * data[0][1];
         } else {
             int ans = 0;
             for (int i = 0; i < row; i++) {
+                // 余因子を計算
                 vector<vector<int>> temp(row - 1, vector<int>(column - 1, 0));
                 for (int j = 0; j < row; j++) {
                     for (int k = 1; k < column; k++) {
@@ -95,36 +97,45 @@ public:
 };
 
 int main() {
+    // (1)A行列
     vector<vector<int>> a1 = {{1, 5, 2},
                               {8, 4, 6},
                               {5, 2, 3}};
+    Matrix aMatrix1(3, 3, a1);
+
+    // (1)B行列
     vector<vector<int>> b1 = {{7, 1, 1},
                               {5, 2, 5},
                               {3, 1, 4}};
+    Matrix bMatrix1(3, 3, b1);
+
+    // (2)A行列
     vector<vector<int>> a2 = {{1, 5},
                               {8, 4}};
+    Matrix aMatrix2(2, 2, a2);
+
+    // (2)B行列
     vector<vector<int>> b2 = {{7, 1},
                               {5, 2}};
+    Matrix bMatrix2(2, 2, b2);
+
+    // (3)行列
     vector<vector<int>> a3 = {{3, 4, -1},
                               {2, 5, -2},
                               {1, 6, -4}};
-
-    Matrix aMatrix1(3, 3, a1);
-    Matrix bMatrix1(3, 3, b1);
-    Matrix aMatrix2(2, 2, a2);
-    Matrix bMatrix2(2, 2, b2);
     Matrix aMatrix3(3, 3, a3);
 
     // 足し算
+    cout << "(1) 行列の足し算" << endl;
     aMatrix1.add(bMatrix1).show();
-
     // 引き算
+    cout << "(1) 行列の引き算" << endl;
     aMatrix1.sub(bMatrix1).show();
-
-    // 内積
+    // 内積計算
+    cout << "(2) 行列の内積" << endl;
     aMatrix2.dot(bMatrix2).show();
-
-    // 行列式
+    // 行列式計算
+    cout << "(3) 行列式の計算" << endl;
     cout << aMatrix3.det() << "\n\n";
 
     return 0;
