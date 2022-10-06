@@ -25,5 +25,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "release.zip"
-        name: Release ${{ steps.tag_version.outputs.new_tag }}
+        name: Release
         token: ${{ secrets.GITHUB_TOKEN }}
