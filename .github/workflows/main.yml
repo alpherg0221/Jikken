@@ -18,12 +18,12 @@ jobs:
       with:
         type: 'zip'
         filename: 'release.zip'
-        path: './01'
+        path: '.'
         exclusions: ''
         
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "release.zip"
-        name: Release
+        name: Release ${{ steps.tag_version.outputs.new_tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
